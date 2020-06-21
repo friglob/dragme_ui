@@ -1,11 +1,17 @@
 import React, { useState,useEffect } from "react";
-import Drag from './../components/Drag';
+
+import Header from 		'./../components/Header';
+import Footer from 		'./../components/Footer';
+import Drag from 		'./../components/Drag';
+
+let image = 'https://images.pexels.com/photos/3841338/pexels-photo-3841338.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
 
 function Main(){
 
-	const [swipeState, 		setSwipeState] 		= useState({});
+	const [swipeState, 		setSwipeState] 		= useState({state: ""});
 	const [headerState, 	setHeaderState] 	= useState(true);
 	const [footerState, 	setFooterState] 	= useState(true);
+	const [image64, 		setImage64] 		= useState('');
 
 	useEffect(() => {
 		// swipe events > layout states
@@ -32,15 +38,22 @@ function Main(){
 		setSwipeState(state);
 	}
 
+	const setImage = (img64) => {
+		localStorage.setItem('img64', img64 );
+		setImage64( img64 );
+	}
+
 	return (
 
 		<div className="main">
 			
-			{ headerState && <header>header</header> }
+			{ headerState && <Header state={swipeState.state} setImage={setImage} /> }
 
-			<Drag onSwipe={onSwipe} />
+			{ image64 && <Drag onSwipe={onSwipe} image64={image64} /> }
+			{ !image64 && <div className="msg">Upload image</div> }
+			
 
-			{ footerState && <footer>footer</footer> }
+			{ footerState && <Footer /> }
 
 		</div>
 

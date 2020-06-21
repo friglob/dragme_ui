@@ -13,13 +13,26 @@ body{
 header{
 	position: fixed;
 	display: block;
-	width: 100%;
+	width: calc( 100vw - 20px );
 	top: 0;
 	left: 0;
 	padding: 10px;
 	background: #222;
 	color: #fff;
+
+	label{
+		display: inline-block;
+		min-width: 100px;
+		margin: 0 10px 0 0;
+		padding: 3px 5px;
+
+		small{
+			margin: 0 0 0 5px;
+			color: #999;
+		}
+	}
 }
+
 footer{
 	position: fixed;
 	display: block;
@@ -27,8 +40,9 @@ footer{
 	bottom: 0;
 	left: 0;
 	padding: 10px;
+	text-align: center;
 	background: #222;
-	color: #fff;
+	color: #999;
 }
 
 .main{
@@ -36,13 +50,16 @@ footer{
 	justify-content: center;
 	align-items: center;
 
+	background: #111;
+
 	width: 100wv;
 	height: 100vh;
 }
 
 .drag{
+	position: relative;
 	width: 100vw;
-	height: 100px;
+	height: 100vh;
 	margin: 0;
 	padding: 0;	
 	background: #eee;
@@ -51,8 +68,8 @@ footer{
 	-webkit-overflow-scrolling: touch;
 
 	background-size: cover;
+	background-repeat: no-repeat;
 	background-position: center center;
-	background-image: url( https://images.pexels.com/photos/5970/road-nature-forest-trees.jpg?cs=srgb&dl=in-the-woods-5970.jpg&fm=jpg&w=600 );
 
 	span{
 		display: block;
@@ -60,29 +77,91 @@ footer{
 		pointer-events: none;
 	}
 
-	&--h-s{
-		width: 25vw;
-	}
-	&--h-m{
-		width: 50vw;
-	}
-	&--h-l{
-		width: 75vw;
-	}
-	&--h-xl{
-		width: 100vw;
+	&:before{
+		position: absolute;
+		background-size:contain;
+		background-position: center;
+		background-repeat: no-repeat;
+		opacity: .2;
+		padding: 20px;
+		color: #fff;
+		width: calc( 100% - 40px );
+		height: calc( 100% - 40px );
 	}
 
-	&--v-s{
-		height: 25vh;
+	// formats
+	&--format-4-3{
+		width: 100vw;
+		height: calc( 100vw * .75);
 	}
-	&--v-m{
-		height: 50vh;
+	&--format-3-2{
+		width: 100vw;
+		height: calc( 100vw * .66);
 	}
-	&--v-l{
-		height: 75vh;
+	&--format-16-9{
+		width: 100vw;
+		height: calc( 100vw * .56);
 	}
-	&--v-xl{
-		height: 100vh;
+	&--format-1-1{
+		width: 100vw;
+		height: 100vw;
 	}
+
+	// grids
+	&--grid-thirds{
+		&:before{
+			background-image: url(https://banner2.cleanpng.com/20180402/zow/kisspng-rule-of-thirds-photography-composition-line-grid-5ac29b177a8177.9314229315227031275018.jpg);
+			content: 'thirds';
+		}
+	}
+	&--grid-fourths{
+		&:before{
+			
+			content: 'fourths';
+		}
+	}
+	&--grid-fibonaci{
+		&:before{
+			background-image: url(https://w7.pngwing.com/pngs/582/946/png-transparent-golden-spiral-golden-ratio-fibonacci-number-golden-rectangle-euclidean-angle-white-text-thumbnail.png );
+			content: 'fibonaci';
+		}
+	}
+	&--grid-golden{
+		&:before{
+			content: 'golden';
+		}
+	}
+}
+
+
+.clearfix{
+	&:after{
+		content: '';
+		display: table;
+		clear: both;
+	}
+}
+
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+
+.btn{
+	margin: 0;
+	padding: 5px;
+	border: none;
+	font-size: 10px;
+	line-height: 10px;
+	font-weight: 700;
+	background: blue;
+	color: #fff;
+	outline: none;
+	width: 65px;
+}
+
+.msg{
+	color: #fff;
 }

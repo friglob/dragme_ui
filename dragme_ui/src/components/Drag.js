@@ -2,11 +2,19 @@ import React, { useState, useEffect, useRef } from "react";
 import {Swipe} from "react-swipe-component"
 import _ from 'lodash';
 
-const statesHorizontal = 	["s", "m", "l", "xl"];
-const statesVertical = 		["s", "m", "l", "xl"];
+const statesHorizontal = 	[	"thirds", 
+								"fibonaci", 
+								"fourths", 
+								"golden"
+							];
+const statesVertical = 		[	"4-3", 
+								"3-2", 
+								"16-9", 
+								"1-1"
+							];
 
-const stateInitial = 		{	"horizontal": 	"l", 
-								"vertical": 	"m"}
+const stateInitial = 		{	"horizontal": 	"thirds", 
+								"vertical": 	"4-3"}
 ;
 
 let swipeDeltaX = 0;
@@ -83,7 +91,8 @@ const Drag = (props) => {
 			<div className="drag-container" ref={refDrag}>
 				<Swipe
 					nodeName="div"
-					className={`drag drag--h-${swipeState.horizontal} drag--v-${swipeState.vertical}`}
+					className={`drag drag--grid-${swipeState.horizontal} drag--format-${swipeState.vertical}`}
+					style={{backgroundImage: `url(${props.image64})`}}
 					onSwipe={ (e)=>{ onSwipe(e) } }
 					onSwipeEnd={ (e) => { onSwipeEnd(e) } }
 					detectMouse={true}
