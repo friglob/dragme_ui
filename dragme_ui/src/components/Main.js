@@ -4,8 +4,6 @@ import Header from 		'./../components/Header';
 import Footer from 		'./../components/Footer';
 import Drag from 		'./../components/Drag';
 
-let image = 'https://images.pexels.com/photos/3841338/pexels-photo-3841338.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
-
 function Main(){
 
 	const [swipeState, 		setSwipeState] 		= useState({state: ""});
@@ -61,7 +59,7 @@ function Main(){
 
 			{ !image64 && 
 				<div className="hello">
-					<h2>Hello</h2>
+					<h1>Check your image.</h1>
 					<p>Ipsum cillum ipsum qui veniam sit labore qui. Esse minim do nulla consectetur.</p>
 				</div> 
 			}

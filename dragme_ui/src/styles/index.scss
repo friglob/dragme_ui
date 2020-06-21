@@ -108,25 +108,25 @@ footer{
 	}
 
 	// grids
-	&--grid-thirds{
+	&--rule-thirds{
 		&:before{
 			background-image: url(https://banner2.cleanpng.com/20180402/zow/kisspng-rule-of-thirds-photography-composition-line-grid-5ac29b177a8177.9314229315227031275018.jpg);
 			content: 'thirds';
 		}
 	}
-	&--grid-fourths{
+	&--rule-fourths{
 		&:before{
 			
 			content: 'fourths';
 		}
 	}
-	&--grid-fibonaci{
+	&--rule-fibonaci{
 		&:before{
 			background-image: url(https://w7.pngwing.com/pngs/582/946/png-transparent-golden-spiral-golden-ratio-fibonacci-number-golden-rectangle-euclidean-angle-white-text-thumbnail.png );
 			content: 'fibonaci';
 		}
 	}
-	&--grid-golden{
+	&--rule-golden{
 		&:before{
 			content: 'golden';
 		}
@@ -159,19 +159,41 @@ footer{
 	background: blue;
 	color: #fff;
 	outline: none;
-	width: 65px;
 }
 
 .hello{
 
 	padding: 20px 40px;
-	color: #ccc;
+	color: #eee;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+
+	background: #111;
 
 	h1{
-		font-size: 20px;
+		font-size: 30px;
+		line-height: 30px;
 	}
 	p{
-		font-size: 11px;
-		line-height: 20px;
+		font-size: 14px;
+		line-height: 22px;
 	}
 }
+
+
+.upload-btn-wrapper {
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+  }
+  
+  .upload-btn-wrapper input[type=file] {
+	font-size: 100px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0;
+  }

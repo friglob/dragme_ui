@@ -1,20 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import {Swipe} from "react-swipe-component"
+import { stateInitial,rules,formats } from './../components/Config';
 import _ from 'lodash';
-
-const statesHorizontal = 	[	"thirds", 
-								"fibonaci", 
-								"fourths", 
-								"golden"
-							];
-const statesVertical = 		[	"4-3", 
-								"3-2", 
-								"16-9", 
-								"1-1"
-							];
-
-const stateInitial = 		{	"horizontal": 	"thirds", 
-								"vertical": 	"4-3"}
 ;
 
 let swipeDeltaX = 0;
@@ -40,8 +27,8 @@ const Drag = (props) => {
 	const onSwipeEnd = (e) => {
 		// get current keys
 		let state = {...swipeState};
-		let currentHkey = _.indexOf(statesHorizontal, state.horizontal );
-		let currentVkey = _.indexOf(statesVertical, state.vertical );
+		let currentRule = parseInt( _.findKey(rules, {key: state.rule} ) );
+		let currentFormat = parseInt( _.findKey(formats, {key: state.format} ) );
 		// get swipe direction
 		let direction = "";
 		if( Math.abs(swipeDeltaX) > Math.abs(swipeDeltaY) ){
@@ -49,19 +36,20 @@ const Drag = (props) => {
 		}else{
 			direction = ( swipeDeltaY > 0 ) ? "bottom" : "top";
 		}
+
 		// update keys
 		switch( direction ){
 			case "left":
-				state.horizontal = (currentHkey > 0) ? statesHorizontal[currentHkey-1] : statesHorizontal[currentHkey];
+				state.rule = (currentRule > 0) ? rules[currentRule-1].key : rules[currentRule].key;
 				break;
 			case "right":
-				state.horizontal = (statesHorizontal.length-1 > currentHkey) ? statesHorizontal[currentHkey+1] : statesHorizontal[currentHkey];
+				state.rule = (rules.length-1 > currentRule) ? rules[currentRule+1].key : rules[currentRule].key;
 				break;
 			case "top":
-				state.vertical = (currentVkey > 0) ? statesVertical[currentVkey-1] : statesVertical[currentVkey];
+				state.format = (currentFormat > 0) ? formats[currentFormat-1].key : formats[currentFormat].key;
 				break;
 			case "bottom":
-				state.vertical = (statesVertical.length-1 > currentVkey) ? statesVertical[currentVkey+1] : statesVertical[currentVkey];
+				state.format = (formats.length-1 > currentFormat) ? formats[currentFormat+1].key : formats[currentFormat].key;
 				break;
 			default:
 				//
@@ -91,7 +79,7 @@ const Drag = (props) => {
 			<div className="drag-container" ref={refDrag}>
 				<Swipe
 					nodeName="div"
-					className={`drag drag--grid-${swipeState.horizontal} drag--format-${swipeState.vertical}`}
+					className={`drag drag--rule-${swipeState.rule} drag--format-${swipeState.format}`}
 					style={{backgroundImage: `url(${props.image64})`}}
 					onSwipe={ (e)=>{ onSwipe(e) } }
 					onSwipeEnd={ (e) => { onSwipeEnd(e) } }

@@ -1,28 +1,34 @@
 import React, { useState,useEffect } from "react";
 import axios from 'axios';
 import { formats, rules } from './../components/Config';
+import _ from 'lodash';
 
 
 
 function Header(props){
 
-	let format = '';
+	const [rule, 	setRule] 	= useState('');
+	const [format, 	setFormat] 	= useState('');
 
+	// get format and rule from state/config
 	useEffect(() => {
-		format = props.state.vertical;
+		if( props.state.format && props.state.rule ){
+			setRule(rules[ _.findKey(rules, {key: props.state.rule } )]['title'] );
+			setFormat(formats[ _.findKey(formats, {key: props.state.format } )]['title'] );
+		}
 	}, [props]);
 
+	// upload new file in LS
 	const doUpload = (e) =>{
-
 		const data = new FormData() 
 		data.append('file', e.target.files[0]);
 		axios.post("http://localhost/dragme_ui/imgTo64.php", data, {})
 		.then(res => {
 			props.setImage(res.data)
 		})
-
 	}
 
+	// reset file in LS
 	const doReset = () => {
 		props.setImage('')
 	}
@@ -35,14 +41,14 @@ function Header(props){
 				{ props.image64 &&
 					<strong>
 						<label>
-							{ props.state && <small>&uarr; &nbsp;</small> }
-							{formats[props.state.vertical]}
-							{ props.state && <small>&darr;</small> }
+							<small>&uarr; &nbsp;</small>
+							{ format }
+							<small>&darr;</small>
 						</label>
 						<label>
-							{ props.state && <small>&larr; &nbsp;</small> }
-							{rules[props.state.horizontal]}
-							{ props.state &&  <small>&rarr;</small> }
+							<small>&larr; &nbsp;</small>
+							{rule}
+							<small>&rarr;</small>
 						</label>
 					</strong>
 				}
@@ -52,7 +58,12 @@ function Header(props){
 			</div>
 
 			<div className="right">
-				{ !props.image64 && <input className="btn" type="file" name="file" onChange={(e) => doUpload(e)}/> }
+				{ !props.image64 && 
+					<div className="upload-btn-wrapper">
+						<button className="btn">Upload a file</button>
+						<input type="file" name="file"  onChange={(e) => doUpload(e)} />
+					</div>
+				}
 				{ props.image64 && <button className="btn" onClick={(e) => doReset()}>New Image</button> }
 			</div>
 
