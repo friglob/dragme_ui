@@ -1,20 +1,24 @@
 import React, { useState,useEffect } from "react";
 import _ from 'lodash';
 import axios from 'axios';
-import { formats, rules } from './../components/Config';
+import { formats, rules, orientations } from './../components/Config';
 
 
 function Header(props){
 
-	const [rule, 	setRule] 		= useState('');
-	const [format, 	setFormat] 		= useState('');
-	const [loading, setLoading] 	= useState(false);
+	const [rule, 			setRule] 				= useState('');
+	const [format, 			setFormat] 				= useState('');
+	const [orientation, 	setOrientation] 		= useState('');
+	const [loading, 		setLoading] 			= useState(false);
 
 	// get format and rule from state/config
 	useEffect(() => {
 		if( props.state.format && props.state.rule ){
 			setRule(rules[ _.findKey(rules, {key: props.state.rule } )]['title'] );
 			setFormat(formats[ _.findKey(formats, {key: props.state.format } )]['title'] );
+		}
+		if( props.imageData && props.imageData.orientation ){
+			setOrientation(orientations[ _.findKey(orientations, {key: props.imageData.orientation } )]['title'] );
 		}
 	}, [props]);
 
@@ -46,19 +50,17 @@ function Header(props){
 				{ props.imageData &&
 					<strong>
 						<label>
-							<small>&uarr; &nbsp;</small>
+							<small>&darr;</small> &nbsp;
 							{ format }
-							<small>&darr;</small>
 						</label>
 						<label>
-							<small>&larr; &nbsp;</small>
+							<small>&rarr;</small> &nbsp;
 							{rule}
-							<small>&rarr;</small>
 						</label>
-						<label>
-							{props.imageData.orientation}:
-							{props.imageData.ratio}
-						</label>
+						{/*<label>
+							{orientation}
+							<small>{props.imageData.ratio}</small>
+						</label>*/}
 					</strong>
 				}
 			</div>

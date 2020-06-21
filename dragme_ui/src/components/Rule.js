@@ -17,7 +17,7 @@ function Rule(props){
 
 		<div className="rule">
 
-			Attach SVG of <label>{rule}</label>
+			Attach SVG <label>{rule}</label>
 
 		</div>
 

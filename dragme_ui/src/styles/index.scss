@@ -58,15 +58,24 @@ footer{
 
 .drag-container{
 	position: relative;
+
+	&[data-orientation=portrait]{
+		background: red;
+	}
+	&[data-orientation=landscape]{
+		background: blue;
+	}
+	&[data-orientation=square]{
+		background: yellow;
+	}
 }
 
 .drag{
 	position: relative;
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	height: 100%;
 	margin: 0;
 	padding: 0;	
-	background: #eee;
 	transition: all .1s ease-in-out;
 
 	-webkit-overflow-scrolling: touch;
@@ -82,6 +91,22 @@ footer{
 	}
 
 	// formats
+	&--format-9-16{
+		width: 100vw;
+		height: calc( 100vw * 1.44);
+	}
+	&--format-2-3{
+		width: 100vw;
+		height: calc( 100vw * 1.33);
+	}
+	&--format-3-4{
+		width: 100vw;
+		height: calc( 100vw * 1.25);
+	}
+	&--format-4-5{
+		width: 100vw;
+		height: calc( 100vw * 1.2);
+	}
 	&--format-4-3{
 		width: 100vw;
 		height: calc( 100vw * .75);
@@ -116,7 +141,7 @@ footer{
 
 	label{
 		background: #000;
-		margin: 0 0 0 5px;
+		margin: 0 5px;
 		padding: 3px 6px;
 	}
 }

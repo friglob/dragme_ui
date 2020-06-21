@@ -3,7 +3,6 @@ import {Swipe} from "react-swipe-component"
 import Rule from './../components/Rule';
 import { stateInitial,rules,formats } from './../components/Config';
 import _ from 'lodash';
-;
 
 let swipeDeltaX = 0;
 let swipeDeltaY = 0;
@@ -16,8 +15,11 @@ const Drag = (props) => {
 
 	// onload 
 	useEffect(() => {
-		props.onSwipe({state: swipeState, direction: 'init'});
-	}, []);
+		//props.onSwipe({state: swipeState, direction: 'init'});
+		if( props.state ){
+			setSwipeState(props.state);
+		}
+	}, [props.state]);
 
 	// swiper methods
 	const onSwipe = (e) => {
@@ -81,7 +83,7 @@ const Drag = (props) => {
 
 		<React.Fragment>
 			
-			<figure className="drag-container" ref={refDrag}>
+			<figure className="drag-container" data-orientation={props.imageData.orientation} ref={refDrag}>
 				<Swipe
 					nodeName="div"
 					className={`drag drag--rule-${swipeState.rule} drag--format-${swipeState.format}`}
@@ -93,7 +95,7 @@ const Drag = (props) => {
 					preventDefault={true}
 					stopPropagation={true}>	
 				</Swipe>
-				<Rule rule={swipeState.rule} />
+				<Rule rule={swipeState.rule} orientation={props.imageData.orientation} />
 			</figure>
 
 		</React.Fragment>
