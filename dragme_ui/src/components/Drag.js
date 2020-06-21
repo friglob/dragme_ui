@@ -4,12 +4,10 @@ import _ from 'lodash';
 
 const statesHorizontal = 	["s", "m", "l", "xl"];
 const statesVertical = 		["s", "m", "l", "xl"];
-const stateInitial = 		{"h": "xl", "v": "s"};
+const stateInitial = 		{"h": "m", "v": "s"};
 
 let swipeDeltaX = 0;
 let swipeDeltaY = 0;
-let requiredSwipeDelta = 73;
-
 
 const Drag = (props) => {
 
@@ -17,7 +15,7 @@ const Drag = (props) => {
 
 	const [swipeState, 		setSwipeState] 		= useState(stateInitial);
 
-	// reset items
+	// onload 
 	useEffect(() => {
 		props.onSwipe({state: swipeState, direction: 'init'});
 	}, []);
@@ -28,7 +26,6 @@ const Drag = (props) => {
 		swipeDeltaY = e.y;
 		transformOnDrag(swipeDeltaX,swipeDeltaY);
 	}
-
 	const onSwipeEnd = (e) => {
 		// get current keys
 		let state = {...swipeState};
@@ -88,9 +85,13 @@ const Drag = (props) => {
 					onSwipeEnd={ (e) => { onSwipeEnd(e) } }
 					detectMouse={true}
 					detectTouch={true} 
-				>
+					preventDefault={true}
+					stopPropagation={true}
+				>	
+					{/*
 					<span>horizontal: {swipeState.h}</span>
 					<span>vertical: {swipeState.v}</span>
+					*/}
 				</Swipe>
 			</div>
 

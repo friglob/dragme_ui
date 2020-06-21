@@ -1,28 +1,30 @@
 import React, { useState, useEffect, useRef } from "react";
 import Drag from './../components/Drag';
 
-let showHeader = true;
-let showFooter = true;
-
 function Main(){
 
 	const [swipeState, 		setSwipeState] 		= useState();
+	const [headerState, 	setHeaderState] 	= useState(true);
+	const [footerState, 	setFooterState] 	= useState(true);
 
 	const onSwipe = (state) => {
 
 		setSwipeState(state);
-		//console.log('MAIN set state:', state);
+		
+		// swipe events > layout states
 		switch ( state.direction ) {
+			// initial state from Drag component
 			case 'init':
-				showHeader = (state.state.v == 's') ? false : true;
+				setHeaderState( (state.state.v == 's') ? false : true );
+				setFooterState( (state.state.v == 's') ? false : true );
 				break;
 			case 'top':
-				showHeader = (state.state.v == 's') ? false : true;
-				showFooter = true;
+				setHeaderState( (state.state.v == 's') ? false : true );
+				setFooterState( (state.state.v == 's') ? false : true );
 				break;
 			case 'bottom':
-				showHeader = true;
-				showFooter = false;
+				setHeaderState( (state.state.v == 'xl') ? false : true );
+				setFooterState( (state.state.v == 'xl') ? false : true );
 				break;
 			default: 
 				//
@@ -33,11 +35,11 @@ function Main(){
 
 		<div className="main">
 			
-			{ showHeader && <header>header</header> }
+			{ headerState && <header>header</header> }
 
 			<Drag onSwipe={onSwipe} />
 
-			{ showFooter && <footer>footer</footer> }
+			{ footerState && <footer>footer</footer> }
 
 		</div>
 
