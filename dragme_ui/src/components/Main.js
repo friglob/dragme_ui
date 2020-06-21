@@ -4,60 +4,80 @@ import Header from 		'./../components/Header';
 import Footer from 		'./../components/Footer';
 import Drag from 		'./../components/Drag';
 
+import { localStorageKey } from './../components/Config';
+import { unset } from "lodash";
+
 function Main(){
 
 	const [swipeState, 		setSwipeState] 		= useState({state: ""});
 	const [headerState, 	setHeaderState] 	= useState(true);
 	const [footerState, 	setFooterState] 	= useState(true);
-	const [image64, 		setImage64] 		= useState('');
+	const [imageData, 		setImageData] 		= useState({});
 
+	// check local storage for image
 	useEffect(() => {
-		// swipe events > layout states
-		let img64 = localStorage.getItem('img64');
-		if( img64 ){
-			setImage64( img64 );
-		}
+		let imgData = localStorage.getItem(localStorageKey);
+		setImageData( JSON.parse( imgData ) );
 	}, []);
 
+	// on drag event
 	useEffect(() => {
-		// swipe events > layout states
 		switch ( swipeState.direction ) {
 			// initial state from Drag component
 			case 'init':
-				setHeaderState( (swipeState.state.vertical === 's') ? false : true );
-				setFooterState( (swipeState.state.vertical === 's') ? false : true );
-				break;
-			case 'top':
-				setHeaderState( (swipeState.state.vertical === 's') ? false : true );
-				setFooterState( (swipeState.state.vertical === 's') ? false : true );
-				break;
-			case 'bottom':
-				setHeaderState( (swipeState.state.vertical === 'xl') ? false : true );
-				setFooterState( (swipeState.state.vertical === 'xl') ? false : true );
+				setHeaderState( true );
+				setFooterState( false );
 				break;
 			default: 
-				//
+				setHeaderState( true );
+				setFooterState( true );
 		}
 	}, [swipeState]);
 
+	// update swipe state
 	const onSwipe = (state) => {
 		setSwipeState(state);
 	}
 
-	const setImage = (img64) => {
-		localStorage.setItem('img64', img64 );
-		setImage64( img64 );
+	// set new image or reset existing one
+	const setImage = (imgParams) => {
+		if( imgParams !== null ){
+			let imgW = imgParams[0];
+			let imgH = imgParams[1];
+			// get orientation
+			if( imgW === imgH ){
+				imgParams.orientation = 'square';
+				imgParams.ratio = 1;
+			}
+			else if( imgW > imgH ){
+				imgParams.orientation = 'landscape';
+				imgParams.ratio = ( imgW/imgH ).toFixed(2);
+			}else{
+				imgParams.orientation = 'portrait';
+				imgParams.ratio = ( imgH/imgW ).toFixed(2);
+			}
+			// get rid of unnecesary data
+			delete( imgParams[0] );
+			delete( imgParams[1] );
+			delete( imgParams[2] );
+			delete( imgParams[3] );
+			localStorage.setItem(localStorageKey, JSON.stringify( imgParams ) );
+		}else{
+			localStorage.removeItem(localStorageKey);
+		}
+		console.log(imgParams)
+		setImageData( imgParams );
 	}
 
 	return (
 
 		<div className="main">
 			
-			{ headerState && <Header state={swipeState.state} setImage={setImage} image64={image64} /> }
+			{ headerState && <Header state={swipeState.state} setImage={setImage} imageData={imageData} /> }
 
-			{ image64 && <Drag onSwipe={onSwipe} image64={image64} /> }
+			{ imageData && <Drag onSwipe={onSwipe} imageData={imageData} /> }
 
-			{ !image64 && 
+			{ imageData === null && 
 				<div className="hello">
 					<h1>Check your image.</h1>
 					<p>Ipsum cillum ipsum qui veniam sit labore qui. Esse minim do nulla consectetur.</p>

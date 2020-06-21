@@ -85,7 +85,7 @@ const Drag = (props) => {
 				<Swipe
 					nodeName="div"
 					className={`drag drag--rule-${swipeState.rule} drag--format-${swipeState.format}`}
-					style={{backgroundImage: `url(${props.image64})`}}
+					style={{backgroundImage: `url(${props.imageData.base64})`}}
 					onSwipe={ (e)=>{ onSwipe(e) } }
 					onSwipeEnd={ (e) => { onSwipeEnd(e) } }
 					detectMouse={true}

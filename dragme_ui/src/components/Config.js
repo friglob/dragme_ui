@@ -37,3 +37,6 @@ export const rules = 	[	{	key: "thirds",
 								title: 	"Golden ratio"
 							}
 ];
+
+
+export const localStorageKey = "imgData";

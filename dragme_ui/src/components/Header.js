@@ -6,8 +6,9 @@ import { formats, rules } from './../components/Config';
 
 function Header(props){
 
-	const [rule, 	setRule] 	= useState('');
-	const [format, 	setFormat] 	= useState('');
+	const [rule, 	setRule] 		= useState('');
+	const [format, 	setFormat] 		= useState('');
+	const [loading, setLoading] 	= useState(false);
 
 	// get format and rule from state/config
 	useEffect(() => {
@@ -19,17 +20,21 @@ function Header(props){
 
 	// upload new file in LS
 	const doUpload = (e) =>{
+
+		setLoading(true);
+
 		const data = new FormData() 
 		data.append('file', e.target.files[0]);
 		axios.post("http://localhost/dragme_ui/imgTo64.php", data, {})
 		.then(res => {
-			props.setImage(res.data)
+			props.setImage(res.data);
+			setLoading(false);
 		})
 	}
 
 	// reset file in LS
 	const doReset = () => {
-		props.setImage('')
+		props.setImage(null)
 	}
 
 	return (
@@ -37,7 +42,8 @@ function Header(props){
 		<header className="header clearfix">
 			
 			<div className="left">
-				{ props.image64 &&
+
+				{ props.imageData &&
 					<strong>
 						<label>
 							<small>&uarr; &nbsp;</small>
@@ -49,21 +55,28 @@ function Header(props){
 							{rule}
 							<small>&rarr;</small>
 						</label>
+						<label>
+							{props.imageData.orientation}:
+							{props.imageData.ratio}
+						</label>
 					</strong>
-				}
-				{ !props.image64 &&
-					<strong>Upload image <small>&rarr;</small> </strong>
 				}
 			</div>
 
 			<div className="right">
-				{ !props.image64 && 
+
+				{ loading && 
+					<span>loading...</span> }
+
+				{ !props.imageData && 
 					<div className="upload-btn-wrapper">
 						<button className="btn">Upload a file</button>
 						<input type="file" name="file"  onChange={(e) => doUpload(e)} />
 					</div>
 				}
-				{ props.image64 && <button className="btn" onClick={(e) => doReset()}>New Image</button> }
+
+				{ props.imageData && 
+					<button className="btn" onClick={(e) => doReset()}>Clear Image</button> }
 			</div>
 
 		</header>
