@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import {Swipe} from "react-swipe-component"
+import Rule from './../components/Rule';
 import { stateInitial,rules,formats } from './../components/Config';
 import _ from 'lodash';
 ;
@@ -39,17 +40,21 @@ const Drag = (props) => {
 
 		// update keys
 		switch( direction ){
-			case "left":
-				state.rule = (currentRule > 0) ? rules[currentRule-1].key : rules[currentRule].key;
-				break;
+			// rule prev
 			case "right":
-				state.rule = (rules.length-1 > currentRule) ? rules[currentRule+1].key : rules[currentRule].key;
+				state.rule = (currentRule > 0) ? rules[currentRule-1].key : rules[rules.length-1].key;
 				break;
+			// rule next
+			case "left":
+				state.rule = (rules.length-1 > currentRule) ? rules[currentRule+1].key : rules[0].key;
+				break;
+			// format prev
 			case "top":
-				state.format = (currentFormat > 0) ? formats[currentFormat-1].key : formats[currentFormat].key;
+				state.format = (currentFormat > 0) ? formats[currentFormat-1].key : formats[formats.length-1].key;
 				break;
+			// format next
 			case "bottom":
-				state.format = (formats.length-1 > currentFormat) ? formats[currentFormat+1].key : formats[currentFormat].key;
+				state.format = (formats.length-1 > currentFormat) ? formats[currentFormat+1].key : formats[0].key;
 				break;
 			default:
 				//
@@ -76,7 +81,7 @@ const Drag = (props) => {
 
 		<React.Fragment>
 			
-			<div className="drag-container" ref={refDrag}>
+			<figure className="drag-container" ref={refDrag}>
 				<Swipe
 					nodeName="div"
 					className={`drag drag--rule-${swipeState.rule} drag--format-${swipeState.format}`}
@@ -86,14 +91,10 @@ const Drag = (props) => {
 					detectMouse={true}
 					detectTouch={true} 
 					preventDefault={true}
-					stopPropagation={true}
-				>	
-					{/*
-					<span>horizontal: {swipeState.h}</span>
-					<span>vertical: {swipeState.v}</span>
-					*/}
+					stopPropagation={true}>	
 				</Swipe>
-			</div>
+				<Rule rule={swipeState.rule} />
+			</figure>
 
 		</React.Fragment>
 

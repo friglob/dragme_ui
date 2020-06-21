@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React from "react";
 
 function Footer(){
 
@@ -6,7 +6,7 @@ function Footer(){
 
 		<footer className="footer">
 			
-			Check yo fotos @ 2020.
+			2020ª Check your composition. &nbsp;&nbsp;&nbsp; Made with love.
 
 		</footer>
 

@@ -1,8 +1,7 @@
 import React, { useState,useEffect } from "react";
+import _ from 'lodash';
 import axios from 'axios';
 import { formats, rules } from './../components/Config';
-import _ from 'lodash';
-
 
 
 function Header(props){
