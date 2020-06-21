@@ -1,17 +1,6 @@
 import React, { useState,useEffect } from "react";
 import axios from 'axios';
-
-const formats = 	{	"4-3": 	"Standard 4:3" , 
-						"3-2": 	"Classic 3:2", 
-						"16-9": "Wide 16:9", 
-						"1-1": 	"Square 1:1"
-};
-
-const rules = 	{		"thirds": 	"Rule of thirds", 
-						"fibonaci": "Fibonaci spiral", 
-						"fourths": 	"Rule of fourths", 
-						"golden": 	"Golden ratio"
-};
+import { formats, rules } from './../components/Config';
 
 
 
@@ -34,27 +23,37 @@ function Header(props){
 
 	}
 
+	const doReset = () => {
+		props.setImage('')
+	}
+
 	return (
 
 		<header className="header clearfix">
 			
 			<div className="left">
-				<strong>
-					<label>
-						<small>&uarr; &nbsp;</small>
-						{formats[props.state.vertical]}
-						<small>&darr;</small>
-					</label>
-					<label>
-						<small>&larr; &nbsp;</small>
-						{rules[props.state.horizontal]}
-						<small>&rarr;</small>
-					</label>
-				</strong>
+				{ props.image64 &&
+					<strong>
+						<label>
+							{ props.state && <small>&uarr; &nbsp;</small> }
+							{formats[props.state.vertical]}
+							{ props.state && <small>&darr;</small> }
+						</label>
+						<label>
+							{ props.state && <small>&larr; &nbsp;</small> }
+							{rules[props.state.horizontal]}
+							{ props.state &&  <small>&rarr;</small> }
+						</label>
+					</strong>
+				}
+				{ !props.image64 &&
+					<strong>Upload image <small>&rarr;</small> </strong>
+				}
 			</div>
 
 			<div className="right">
-				<input className="btn" type="file" name="file" onChange={(e) => doUpload(e)}/>
+				{ !props.image64 && <input className="btn" type="file" name="file" onChange={(e) => doUpload(e)}/> }
+				{ props.image64 && <button className="btn" onClick={(e) => doReset()}>New Image</button> }
 			</div>
 
 		</header>

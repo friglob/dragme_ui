@@ -55,10 +55,16 @@ function Main(){
 
 		<div className="main">
 			
-			{ headerState && <Header state={swipeState.state} setImage={setImage} /> }
+			{ headerState && <Header state={swipeState.state} setImage={setImage} image64={image64} /> }
 
 			{ image64 && <Drag onSwipe={onSwipe} image64={image64} /> }
-			{ !image64 && <div className="msg">Upload image</div> }
+
+			{ !image64 && 
+				<div className="hello">
+					<h2>Hello</h2>
+					<p>Ipsum cillum ipsum qui veniam sit labore qui. Esse minim do nulla consectetur.</p>
+				</div> 
+			}
 			
 
 			{ footerState && <Footer /> }
