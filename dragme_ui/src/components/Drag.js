@@ -4,7 +4,10 @@ import _ from 'lodash';
 
 const statesHorizontal = 	["s", "m", "l", "xl"];
 const statesVertical = 		["s", "m", "l", "xl"];
-const stateInitial = 		{"h": "m", "v": "s"};
+
+const stateInitial = 		{	"horizontal": 	"l", 
+								"vertical": 	"m"}
+;
 
 let swipeDeltaX = 0;
 let swipeDeltaY = 0;
@@ -29,8 +32,8 @@ const Drag = (props) => {
 	const onSwipeEnd = (e) => {
 		// get current keys
 		let state = {...swipeState};
-		let currentHkey = _.indexOf(statesHorizontal, state.h );
-		let currentVkey = _.indexOf(statesVertical, state.v );
+		let currentHkey = _.indexOf(statesHorizontal, state.horizontal );
+		let currentVkey = _.indexOf(statesVertical, state.vertical );
 		// get swipe direction
 		let direction = "";
 		if( Math.abs(swipeDeltaX) > Math.abs(swipeDeltaY) ){
@@ -41,16 +44,16 @@ const Drag = (props) => {
 		// update keys
 		switch( direction ){
 			case "left":
-				state.h = (currentHkey > 0) ? statesHorizontal[currentHkey-1] : statesHorizontal[currentHkey];
+				state.horizontal = (currentHkey > 0) ? statesHorizontal[currentHkey-1] : statesHorizontal[currentHkey];
 				break;
 			case "right":
-				state.h = (statesHorizontal.length-1 > currentHkey) ? statesHorizontal[currentHkey+1] : statesHorizontal[currentHkey];
+				state.horizontal = (statesHorizontal.length-1 > currentHkey) ? statesHorizontal[currentHkey+1] : statesHorizontal[currentHkey];
 				break;
 			case "top":
-				state.v = (currentVkey > 0) ? statesVertical[currentVkey-1] : statesVertical[currentVkey];
+				state.vertical = (currentVkey > 0) ? statesVertical[currentVkey-1] : statesVertical[currentVkey];
 				break;
 			case "bottom":
-				state.v = (statesVertical.length-1 > currentVkey) ? statesVertical[currentVkey+1] : statesVertical[currentVkey];
+				state.vertical = (statesVertical.length-1 > currentVkey) ? statesVertical[currentVkey+1] : statesVertical[currentVkey];
 				break;
 			default:
 				//
@@ -80,7 +83,7 @@ const Drag = (props) => {
 			<div className="drag-container" ref={refDrag}>
 				<Swipe
 					nodeName="div"
-					className={`drag drag--h-${swipeState.h} drag--v-${swipeState.v}`}
+					className={`drag drag--h-${swipeState.horizontal} drag--v-${swipeState.vertical}`}
 					onSwipe={ (e)=>{ onSwipe(e) } }
 					onSwipeEnd={ (e) => { onSwipeEnd(e) } }
 					detectMouse={true}

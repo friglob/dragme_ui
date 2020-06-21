@@ -1,34 +1,35 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState,useEffect } from "react";
 import Drag from './../components/Drag';
 
 function Main(){
 
-	const [swipeState, 		setSwipeState] 		= useState();
+	const [swipeState, 		setSwipeState] 		= useState({});
 	const [headerState, 	setHeaderState] 	= useState(true);
 	const [footerState, 	setFooterState] 	= useState(true);
 
-	const onSwipe = (state) => {
-
-		setSwipeState(state);
-		
+	useEffect(() => {
 		// swipe events > layout states
-		switch ( state.direction ) {
+		switch ( swipeState.direction ) {
 			// initial state from Drag component
 			case 'init':
-				setHeaderState( (state.state.v == 's') ? false : true );
-				setFooterState( (state.state.v == 's') ? false : true );
+				setHeaderState( (swipeState.state.vertical === 's') ? false : true );
+				setFooterState( (swipeState.state.vertical === 's') ? false : true );
 				break;
 			case 'top':
-				setHeaderState( (state.state.v == 's') ? false : true );
-				setFooterState( (state.state.v == 's') ? false : true );
+				setHeaderState( (swipeState.state.vertical === 's') ? false : true );
+				setFooterState( (swipeState.state.vertical === 's') ? false : true );
 				break;
 			case 'bottom':
-				setHeaderState( (state.state.v == 'xl') ? false : true );
-				setFooterState( (state.state.v == 'xl') ? false : true );
+				setHeaderState( (swipeState.state.vertical === 'xl') ? false : true );
+				setFooterState( (swipeState.state.vertical === 'xl') ? false : true );
 				break;
 			default: 
 				//
 		}
+	}, [swipeState]);
+
+	const onSwipe = (state) => {
+		setSwipeState(state);
 	}
 
 	return (
