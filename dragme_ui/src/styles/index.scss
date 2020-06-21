@@ -82,13 +82,23 @@ footer{
 
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-position: center center;
 
 	span{
 		display: block;
 		text-align: center;
 		pointer-events: none;
 	}
+
+	// centers
+	&--center-t-l{ background-position: top left; }
+	&--center-t-c{ background-position: top center; }
+	&--center-t-r{ background-position: top right; }
+	&--center-c-l{ background-position: center left; }
+	&--center-c-c{ background-position: center center; }
+	&--center-c-r{ background-position: center right; }
+	&--center-b-l{ background-position: bottom left; }
+	&--center-b-c{ background-position: bottom center; }
+	&--center-b-r{ background-position: bottom right; }
 
 	// formats
 	&--format-9-16{

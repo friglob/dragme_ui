@@ -4,7 +4,7 @@ import Header from 		'./../components/Header';
 import Footer from 		'./../components/Footer';
 import Drag from 		'./../components/Drag';
 
-import { formats, stateInitial, localStorageKey } from './../components/Config';
+import { formats, centers, stateInitial, localStorageKey } from './../components/Config';
 import { formatByRatio } from './../components/Helpers';
 import _, { unset } from "lodash";
 
@@ -22,10 +22,11 @@ function Main(){
 			let imgData = JSON.parse( lsData );
 			// get img format from ratio
 			let imgFormat = formatByRatio(imgData.ratio);
-			console.log( imgData.ratio, imgFormat );
+			console.log( imgFormat );
 			// set ratio
 			setSwipeState({state: {	format: imgFormat,
-									rule: 	stateInitial['rule']}
+									rule: 	stateInitial['rule'],
+									center: stateInitial['center']}
 						});
 			setImageData( imgData );
 		}
@@ -56,7 +57,8 @@ function Main(){
 			// update format
 			let imgFormat = formatByRatio( imgData.ratio );
 			setSwipeState({state: {	format: imgFormat, 
-									rule: 	swipeState.state.rule }
+									rule: 	swipeState.state.rule,
+									center: swipeState.state.center }
 						});
 			// save LS
 			localStorage.setItem(localStorageKey, JSON.stringify( imgData ) );
@@ -66,6 +68,15 @@ function Main(){
 		setImageData( imgData );
 	}
 
+	// centering the image
+	const setCenter = () => {
+		let state = {...swipeState.state};
+		let currentCenter = parseInt( _.findKey(centers, {key: state.center }) );
+		let nextCenter = ( centers.length -1 > currentCenter ) ? centers[currentCenter+1] : centers[0];
+		state.center = nextCenter.key;
+		setSwipeState({	state: state});
+	}
+
 	return (
 
 		<div className="main">
@@ -73,7 +84,8 @@ function Main(){
 			{ headerState && 
 				<Header 	state={swipeState.state} 
 							imageData={imageData}
-							setImage={setImage} /> 
+							setImage={setImage}
+							setCenter={setCenter} /> 
 			}
 
 			{ imageData && 

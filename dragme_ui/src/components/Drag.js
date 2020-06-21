@@ -17,6 +17,7 @@ const Drag = (props) => {
 	useEffect(() => {
 		//props.onSwipe({state: swipeState, direction: 'init'});
 		if( props.state ){
+			console.log( props.state )
 			setSwipeState(props.state);
 		}
 	}, [props.state]);
@@ -86,7 +87,7 @@ const Drag = (props) => {
 			<figure className="drag-container" data-orientation={props.imageData.orientation} ref={refDrag}>
 				<Swipe
 					nodeName="div"
-					className={`drag drag--rule-${swipeState.rule} drag--format-${swipeState.format}`}
+					className={`drag drag--rule-${swipeState.rule} drag--format-${swipeState.format} drag--center-${swipeState.center}`}
 					style={{backgroundImage: `url(${props.imageData.base64})`}}
 					onSwipe={ (e)=>{ onSwipe(e) } }
 					onSwipeEnd={ (e) => { onSwipeEnd(e) } }
