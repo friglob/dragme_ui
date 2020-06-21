@@ -15,6 +15,14 @@ function Main(){
 
 	useEffect(() => {
 		// swipe events > layout states
+		let img64 = localStorage.getItem('img64');
+		if( img64 ){
+			setImage64( img64 );
+		}
+	}, []);
+
+	useEffect(() => {
+		// swipe events > layout states
 		switch ( swipeState.direction ) {
 			// initial state from Drag component
 			case 'init':
