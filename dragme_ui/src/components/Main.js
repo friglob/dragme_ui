@@ -9,9 +9,9 @@ function Main(){
 	const [swipeState, 		setSwipeState] 		= useState();
 
 	const onSwipe = (state) => {
-		setSwipeState(state);
-		console.log('MAIN set state:', state);
 
+		setSwipeState(state);
+		//console.log('MAIN set state:', state);
 		switch ( state.direction ) {
 			case 'init':
 				showHeader = (state.state.v == 's') ? false : true;
