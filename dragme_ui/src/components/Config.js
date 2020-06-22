@@ -1,6 +1,6 @@
 
 export const stateInitial = {	"format": 		"4-3",
-								"rule": 		"sixths",
+								"rule": 		"thirds",
 								"center": 		"c-c",
 								"orientation": 	""
 };

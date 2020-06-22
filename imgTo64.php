@@ -1,9 +1,28 @@
 <?php
 
 $path = $_FILES['file']['tmp_name'];
+$tmp = "tmp/test.jpg";
 $type = pathinfo($path, PATHINFO_EXTENSION);
-$data = file_get_contents( $path );
+
+// Get sizes
+list($width, $height) = getimagesize($path);
+//obtain ratio
+$imageratio = $width/$height;
+$newwidth = 600;
+$newheight = 600 / $imageratio; 
+// Load
+$thumb = imagecreatetruecolor($newwidth, $newheight);
+$source = imagecreatefromjpeg($path);
+// Resize
+imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+// Output
+imagejpeg($thumb, $tmp);
+imagedestroy($thumb);
+
+$data = file_get_contents( $tmp );
+
 $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
 
 $arr = getimagesize( $path );
 $arr['base64'] = $base64;
@@ -25,6 +44,8 @@ unset($arr[3]);
 unset($arr['mime']);
 unset($arr['bits']);
 unset($arr['channels']);
+
+unlink( $tmp );
 
 header('Content-Type: application/json');
 echo json_encode($arr);
