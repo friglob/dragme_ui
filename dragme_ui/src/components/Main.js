@@ -22,7 +22,6 @@ function Main(){
 			let imgData = JSON.parse( lsData );
 			// get img format from ratio
 			let imgFormat = formatByRatio(imgData.ratio);
-			console.log( imgFormat );
 			// set ratio
 			setSwipeState({state: {	format: imgFormat,
 									rule: 	stateInitial['rule'],
@@ -96,12 +95,16 @@ function Main(){
 
 			{ imageData === null && 
 				<div className="hello">
-					<h1>Check your image.</h1>
-					<p>Ipsum cillum ipsum qui veniam sit labore qui. Esse minim do nulla consectetur.</p>
+					<h1>Practice composition.</h1>
+					<p>Use the <label>+</label> button to load an image from the gallery or by taking a photo.</p>
+					<p>Swiping <label>up/down</label> changes the crop of the picture.</p>
+					<p>Swiping <label>left/right</label> changes the grid rule applied to the image.</p>
+					<p>Clicking on the <label>centering icon</label> changes the center of the image focus.</p>
+					<p>Images are <label>not uploaded</label> to any server, they are stored on your device.</p>
+					<p>As usual, do not forget to <label>have fun</label> while using this tool.</p>
 				</div> 
 			}
 			
-
 			{ footerState && <Footer /> }
 
 		</div>

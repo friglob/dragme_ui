@@ -1,7 +1,9 @@
 import React, { useState,useEffect } from "react";
 import _ from 'lodash';
 import axios from 'axios';
+import html2canvas from 'html2canvas';
 import { formats, rules, centers, orientations } from './../components/Config';
+import { saveAs } from './../components/Helpers';
 
 
 function Header(props){
@@ -45,6 +47,23 @@ function Header(props){
 		props.setImage(null)
 	}
 
+	// save file localy
+	const doSave = () => {
+		html2canvas(
+			document.querySelector(".drag"),{
+				ignoreElements: function(el) { return el.classList.contains('rule') },
+				scale: 		2
+			}
+		).then(canvas => {
+			let now = new Date();
+			var date = now.getDate();
+			var month = now.getMonth();
+			var year = now.getFullYear();
+			let filename = `composition_${props.state.rule}_${props.state.format}_${date}${month}${year}.png`;
+			saveAs(canvas.toDataURL(), filename);
+		});
+	}
+
 	const doCentering = () => {
 		props.setCenter();
 	}
@@ -77,13 +96,17 @@ function Header(props){
 
 				{ !props.imageData && 
 					<div className="upload-btn-wrapper">
-						<button className="btn">Upload a file</button>
+						<button className="btn">+</button>
 						<input type="file" name="file"  onChange={(e) => doUpload(e)} />
 					</div>
 				}
 
 				{ props.imageData && 
-					<button className="btn" onClick={(e) => doReset()}>Clear Image</button> }
+					<React.Fragment>
+						<button className="btn" onClick={(e) => doSave()}>^</button>
+						<button className="btn" onClick={(e) => doReset()}>x</button> 
+					</React.Fragment>
+				}
 			</div>
 
 		</header>

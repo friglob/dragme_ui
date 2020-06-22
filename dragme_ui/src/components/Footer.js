@@ -4,9 +4,14 @@ function Footer(){
 
 	return (
 
-		<footer className="footer">
+		<footer className="footer clearfix">
 			
-			2020ª Check your composition. &nbsp;&nbsp;&nbsp; Made with love.
+			<div className="left">
+				Practice composition @ 2020.
+			</div> 
+			<div className="right">
+				Made with love.
+			</div>
 
 		</footer>
 

@@ -13,15 +13,13 @@ const Drag = (props) => {
 
 	const [swipeState, 		setSwipeState] 		= useState(stateInitial);
 
-	// onload 
+	// update state from props 
 	useEffect(() => {
-		//props.onSwipe({state: swipeState, direction: 'init'});
 		if( props.state ){
-			console.log( props.state )
 			setSwipeState(props.state);
 		}
 	}, [props.state]);
-
+	
 	// swiper methods
 	const onSwipe = (e) => {
 		swipeDeltaX = e.x;
@@ -95,8 +93,11 @@ const Drag = (props) => {
 					detectTouch={true} 
 					preventDefault={true}
 					stopPropagation={true}>	
+					
+					<Rule rule={swipeState.rule} orientation={props.imageData.orientation} />
+
 				</Swipe>
-				<Rule rule={swipeState.rule} orientation={props.imageData.orientation} />
+				
 			</figure>
 
 		</React.Fragment>
