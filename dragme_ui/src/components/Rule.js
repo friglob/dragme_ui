@@ -1,8 +1,7 @@
 import React,{useState, useEffect} from "react";
-import _ from 'lodash';
-import { rules } from './../components/Config';
-
-//import './../rules/thirds.svg';
+//import _ from 'lodash';
+import { baseUrl,rules } from './../components/Config';
+import SVG from 'react-inlinesvg';
 
 function Rule(props){
 
@@ -10,11 +9,10 @@ function Rule(props){
 
 	// get rule from state/config
 	useEffect(() => {
-		if( props.rule ){
-			let ruleObj = rules[ _.findKey(rules, {key: props.rule } )];
-			setRule(
-				`rules/${ruleObj.key}_${props.format}.svg`
-			);
+		if( props.rule && props.format ){
+			//let ruleObj = rules[ _.findKey(rules, {key: props.rule } )];
+			let rulePath = `${baseUrl}rules/${props.rule}_${props.format}.svg`;
+			setRule( rulePath );
 		}
 	}, [props]);
 
@@ -23,7 +21,9 @@ function Rule(props){
 		<div className="rule">
 
 			{ rule && 
-				<img alt="rule" src={rule} /> 
+				<SVG 	className="rule__svg" 
+						loader={<span className="rule__loading">Loading Rule...</span>}
+						src={rule} />
 			}
 			
 		</div>

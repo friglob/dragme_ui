@@ -4,7 +4,7 @@ import Header from 		'./../components/Header';
 import Footer from 		'./../components/Footer';
 import Drag from 		'./../components/Drag';
 
-import { rules, centers, stateInitial, localStorageKey } from './../components/Config';
+import { baseUrl, rules, centers, stateInitial, localStorageKey } from './../components/Config';
 import { formatByRatio } from './../components/Helpers';
 import _ from "lodash";
 
@@ -102,15 +102,15 @@ function Main(){
 					<h1>Applied <label>Composition</label></h1>
 					<p>
 						Use the top <label>+</label> button to load an image or to take a picture.
-						Swiping <label>up/down</label> changes the crop of the picture.
-						Swiping <label>left/right</label> changes the grid rule applied to the image.
-						Clicking on the <label>centering icon</label> changes the center of the image focus.
+						Swipe <label>up/down</label> to change the crop of the picture.
+						Swipe <label>left/right</label> to change the composition rule applied to the image.
+						Click on the <label>center icon</label> to change the image centering.
 						<br /><br />
 						As usual, do not forget to <label>have fun</label> while using this tool.
 						<br /><br />
 						<small className="gray">* Images are not uploaded to a server, they are stored on your device.</small>
 					</p>
-					<img className="hello__img" src={`dragme_ui/rules/homepage.svg`} alt="" />
+					<img className="hello__img" src={`${baseUrl}rules/homepage.svg`} alt="" />
 				</div> 
 			}
 			

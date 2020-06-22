@@ -16,7 +16,7 @@ $source = imagecreatefromjpeg($path);
 // Resize
 imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
 // Output
-imagejpeg($thumb, $tmp);
+imagejpeg($thumb, $tmp, 100);
 imagedestroy($thumb);
 
 $data = file_get_contents( $tmp );

@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import _ from 'lodash';
 import axios from 'axios';
 import html2canvas from 'html2canvas';
-import { formats, rules, centers, orientations } from './../components/Config';
+import { baseUrl, formats, rules, centers, orientations } from './../components/Config';
 import { saveAs } from './../components/Helpers';
 
 
@@ -63,7 +63,7 @@ function Header(props){
 
 		const data = new FormData() 
 		data.append('file', e.target.files[0]);
-		axios.post("imgTo64.php", data, {})
+		axios.post(`${baseUrl}imgTo64.php`, data, {})
 		.then(res => {
 			props.setImage(res.data);
 			setLoading(false);
@@ -84,7 +84,7 @@ function Header(props){
 						? false
 						: el.classList.contains('rule') 
 				},
-				scale: 1
+				scale: 2
 			}
 		).then(canvas => {
 			let now = new Date();
@@ -105,7 +105,7 @@ function Header(props){
 
 		<header className="header clearfix">
 			
-			<div className="left">
+			<div className="left clearfix">
 
 				{ props.imageData &&
 					<React.Fragment>
@@ -116,7 +116,7 @@ function Header(props){
 						<label>
 							{rule}
 						</label>
-						{<label>
+						{<label className="right">
 							<button className="btn orientations" onClick={(e) => doCentering()}>
 								<Orientation current={centering.key} />
 							</button>
@@ -128,22 +128,20 @@ function Header(props){
 			<div className="right">
 
 				<strong>
-				{ !props.imageData && 
+				{ 
 					<div className={`upload-btn-wrapper`} data-loading={loading}>
-						<button className="btn btn--accent">+</button>
+						<button className="btn btn--accent btn--large">+</button>
 						<input type="file" name="file" accept="image/*" onChange={(e) => doUpload(e)} />
 					</div>
 				}
 
-				{ props.imageData && 
+				{ props.imageData &&  1==2 && 
 					<React.Fragment>
 						{/* 
 						<button className="btn" onClick={(e) => doSave({rules: true})}>get rules</button>
-						&nbsp;
-						*/}
 						<button className="btn btn--ui" onClick={(e) => doSave({rules: false})}>Download</button>
-						&nbsp;
-						<button className="btn btn--accent" onClick={(e) => doReset()}>New</button> 
+						*/}
+						<button className="btn btn--accent btn--large" onClick={(e) => doUpload()}>+</button> 
 					</React.Fragment>
 				}
 				</strong>
