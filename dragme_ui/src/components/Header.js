@@ -63,7 +63,7 @@ function Header(props){
 
 		const data = new FormData() 
 		data.append('file', e.target.files[0]);
-		axios.post("http://localhost/dragme_ui/imgTo64.php", data, {})
+		axios.post("imgTo64.php", data, {})
 		.then(res => {
 			props.setImage(res.data);
 			setLoading(false);

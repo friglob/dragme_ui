@@ -13,7 +13,7 @@ function Rule(props){
 		if( props.rule ){
 			let ruleObj = rules[ _.findKey(rules, {key: props.rule } )];
 			setRule(
-				`dragme_ui/rules/${ruleObj.key}_${props.format}.svg`
+				`rules/${ruleObj.key}_${props.format}.svg`
 			);
 		}
 	}, [props]);
