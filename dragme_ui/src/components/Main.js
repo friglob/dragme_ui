@@ -71,7 +71,6 @@ function Main(){
 									orientation: 	swipeState.state.orientation }
 						});
 			// save LS
-			console.log( imgData );
 			localStorage.setItem(localStorageKey, JSON.stringify( imgData ) );
 		}else{
 			localStorage.removeItem(localStorageKey);
@@ -107,13 +106,17 @@ function Main(){
 
 			{ imageData === null && 
 				<div className="hello">
-					<h1>Practice <label>Composition</label></h1>
-					<p>Use the <label>+</label> button to load an image from the gallery or by taking a photo.</p>
-					<p>Swiping <label>up/down</label> changes the crop of the picture.</p>
-					<p>Swiping <label>left/right</label> changes the grid rule applied to the image.</p>
-					<p>Clicking on the <label>centering icon</label> changes the center of the image focus.</p>
-					<p>Images are <label>not uploaded</label> to any server, they are stored on your device.</p>
-					<p>As usual, do not forget to <label>have fun</label> while using this tool.</p>
+					<h1>Applied <label>Composition</label></h1>
+					<p>
+						Use the top <label>+</label> button to load an image from the gallery or by taking a photo.
+						Swiping <label>up/down</label> changes the crop of the picture.
+						Swiping <label>left/right</label> changes the grid rule applied to the image.
+						Clicking on the <label>centering icon</label> changes the center of the image focus.
+						<br /><br />
+						As usual, do not forget to <label>have fun</label> while using this tool.
+						<br /><br />
+						<small className="gray">* Images are not uploaded to a server, they are stored on your device.</small>
+					</p>
 					{ randomRule && <img className="hello__img" src={`dragme_ui/rules/${randomRule}`} alt="" />}
 				</div> 
 			}

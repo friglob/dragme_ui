@@ -11,7 +11,10 @@ function Rule(props){
 	// get rule from state/config
 	useEffect(() => {
 		if( props.rule ){
-			setRule(rules[ _.findKey(rules, {key: props.rule } )] );
+			let ruleObj = rules[ _.findKey(rules, {key: props.rule } )];
+			setRule(
+				`dragme_ui/rules/${ruleObj.key}_${props.format}.svg`
+			);
 		}
 	}, [props]);
 
@@ -19,8 +22,8 @@ function Rule(props){
 
 		<div className="rule">
 
-			{ rule.svg && 
-				<img className="" data-format={props.format} alt={rule.title} src={`dragme_ui/rules/${rule.svg}`} /> 
+			{ rule && 
+				<img alt="rule" src={rule} /> 
 			}
 			
 		</div>

@@ -244,7 +244,7 @@ footer{
 	}
 
 	img{
-		opacity: .5;
+		opacity: 1;
 		width: 100%;
 		height: 100%;
 	}
@@ -281,14 +281,14 @@ footer{
 		color: #222;
 	}
 	&--ui{
-		background: lighten($color_bg,10%);
+		background: lighten($color_bg,20%);
 		color: $color_text;
 	}
 }
 
 .hello{
 
-	position: relative;
+	//position: relative;
 	padding: 20px 40px;
 	color: $color_text;
 	display: flex;
@@ -296,14 +296,15 @@ footer{
 	justify-content: center;
 	align-items: flex-start;
 
-	background: $color_bg;
+	//background: $color_bg;
 
 	&__img{
 		position: absolute;
-		top: 0;
+		z-index: 0;
+		top: 50px;
 		left: 0;
-		width: 100%;
-		height: 100%;
+		width: 100vw;
+		height: 50vh;
 		opacity: .15;
 	}
 
@@ -316,18 +317,21 @@ footer{
 	p{
 		margin: 14px 0 0 0;
 		padding: 0 0 14px 0;
-		max-width: 450px;
+		max-width: 350px;
 		font-size: 11px;
-		line-height: 17px;
+		line-height: 18px;
 		border-bottom: 1px dashed ligthen( $color_bg, 10%);
 
 		&:last-of-type{
 			border-bottom: none;
 		}
 	}
+	.gray{
+		color: darken($color_text,50%);
+	}
 	label{
-		padding: 2px 4px;
-		color: $color_brand;
+		//padding: 2px 2px;
+		color: lighten($color_brand,25%);
 		font-weight: 700;
 	}
 }

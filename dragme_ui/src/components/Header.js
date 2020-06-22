@@ -143,9 +143,9 @@ function Header(props){
 						{/* 
 						<button className="btn" onClick={(e) => doSave({rules: true})}>get rules</button>
 						&nbsp;
-						<button className="btn" onClick={(e) => doSave({rules: false})}>get image</button>
-						&nbsp;
 						*/}
+						<button className="btn btn--ui" onClick={(e) => doSave({rules: false})}>Download</button>
+						&nbsp;
 						<button className="btn btn--accent" onClick={(e) => doReset()}>New</button> 
 					</React.Fragment>
 				}
