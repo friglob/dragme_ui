@@ -48,11 +48,15 @@ function Header(props){
 	}
 
 	// save file
-	const doSave = () => {
+	const doSave = (params) => {
 		html2canvas(
 			document.querySelector(".drag"),{
-				ignoreElements: function(el) { return el.classList.contains('rule') },
-				scale: 		2
+				ignoreElements: function(el) {  
+					return (params.rules) 
+						? false
+						: el.classList.contains('rule') 
+				},
+				scale: 1
 			}
 		).then(canvas => {
 			let now = new Date();
@@ -80,11 +84,12 @@ function Header(props){
 						<label>
 							{ format }
 						</label>
+						&nbsp;
 						<label>
 							{rule}
 						</label>
 						{<label>
-							<button className="btn" onClick={(e) => doCentering()}>{centering.title}</button>
+							<button className="btn btn--ui" onClick={(e) => doCentering()}>{centering.title}</button>
 						</label>}
 					</strong>
 				}
@@ -98,16 +103,18 @@ function Header(props){
 
 				{ !props.imageData && 
 					<div className="upload-btn-wrapper">
-						<button className="btn">+</button>
+						<button className="btn btn--accent">+</button>
 						<input type="file" name="file"  onChange={(e) => doUpload(e)} />
 					</div>
 				}
 
 				{ props.imageData && 
 					<React.Fragment>
-						<button className="btn" onClick={(e) => doSave()}>Download</button>
+						<button className="btn" onClick={(e) => doSave({rules: true})}>get rules</button>
 						&nbsp;
-						<button className="btn" onClick={(e) => doReset()}>New</button> 
+						<button className="btn" onClick={(e) => doSave({rules: false})}>get image</button>
+						&nbsp;
+						<button className="btn btn--accent" onClick={(e) => doReset()}>New</button> 
 					</React.Fragment>
 				}
 				</strong>

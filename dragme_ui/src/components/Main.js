@@ -25,8 +25,10 @@ function Main(){
 			// set ratio
 			setSwipeState({state: {	format: imgFormat,
 									rule: 	stateInitial['rule'],
-									center: stateInitial['center']}
+									center: stateInitial['center'],
+									orientation: 	stateInitial['orientation'] }
 						});
+			console.log( imgData );
 			setImageData( imgData );
 		}
 	}, []);
@@ -57,9 +59,11 @@ function Main(){
 			let imgFormat = formatByRatio( imgData.ratio );
 			setSwipeState({state: {	format: imgFormat, 
 									rule: 	swipeState.state.rule,
-									center: swipeState.state.center }
+									center: swipeState.state.center,
+									orientation: 	swipeState.state.orientation }
 						});
 			// save LS
+			console.log( imgData );
 			localStorage.setItem(localStorageKey, JSON.stringify( imgData ) );
 		}else{
 			localStorage.removeItem(localStorageKey);

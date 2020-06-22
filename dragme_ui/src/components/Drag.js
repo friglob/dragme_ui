@@ -82,7 +82,7 @@ const Drag = (props) => {
 
 		<React.Fragment>
 			
-			<figure className="drag-container" data-orientation={props.imageData.orientation} ref={refDrag}>
+			<div className="drag-container" data-orientation={props.imageData.orientation} ref={refDrag}>
 				<Swipe
 					nodeName="div"
 					className={`drag drag--rule-${swipeState.rule} drag--format-${swipeState.format} drag--center-${swipeState.center}`}
@@ -98,7 +98,7 @@ const Drag = (props) => {
 
 				</Swipe>
 				
-			</figure>
+			</div>
 
 		</React.Fragment>
 

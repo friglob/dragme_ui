@@ -10,6 +10,14 @@ $arr['base64'] = $base64;
 $arr['ratio'] = $arr[0]/$arr[1];
 $arr['colors'] = ["color1", "color2", "color3"];
 
+if( $arr[0] == $arr[1] ){
+	$arr['orientation'] = 'square';
+}else if( $arr[0] > $arr[1] ){
+	$arr['orientation'] = 'landscape';
+}else{
+	$arr['orientation'] = 'portrait';
+}
+
 unset($arr[0]);
 unset($arr[1]);
 unset($arr[2]);
