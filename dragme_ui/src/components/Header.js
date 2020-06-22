@@ -6,6 +6,34 @@ import { formats, rules, centers, orientations } from './../components/Config';
 import { saveAs } from './../components/Helpers';
 
 
+
+function Orientation(props){
+
+	const [items, 			setItems] 				= useState([]);
+
+	useEffect(() => {
+		const itemList = (
+			<React.Fragment>
+				{centers.map( (center,idx) => {
+					let itemClass = ( center.key === props.current ) ? 'active' : '';
+					return (
+						<span key={idx} className={`orientation__${center.key} ${itemClass}`}>{center.title}</span>
+					)
+				})}
+			</React.Fragment>
+		);
+		setItems(itemList);
+	}, [props]);
+
+	return (
+		<React.Fragment>
+			{items}
+		</React.Fragment>
+	)
+}
+
+
+
 function Header(props){
 
 	const [rule, 			setRule] 				= useState('');
@@ -80,7 +108,7 @@ function Header(props){
 			<div className="left">
 
 				{ props.imageData &&
-					<strong>
+					<React.Fragment>
 						<label>
 							{ format }
 						</label>
@@ -89,9 +117,11 @@ function Header(props){
 							{rule}
 						</label>
 						{<label>
-							<button className="btn btn--ui" onClick={(e) => doCentering()}>{centering.title}</button>
+							<button className="btn orientations" onClick={(e) => doCentering()}>
+								<Orientation current={centering.key} />
+							</button>
 						</label>}
-					</strong>
+					</React.Fragment>
 				}
 			</div>
 
@@ -110,10 +140,12 @@ function Header(props){
 
 				{ props.imageData && 
 					<React.Fragment>
+						{/* 
 						<button className="btn" onClick={(e) => doSave({rules: true})}>get rules</button>
 						&nbsp;
 						<button className="btn" onClick={(e) => doSave({rules: false})}>get image</button>
 						&nbsp;
+						*/}
 						<button className="btn btn--accent" onClick={(e) => doReset()}>New</button> 
 					</React.Fragment>
 				}

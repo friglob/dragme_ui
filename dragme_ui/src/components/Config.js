@@ -1,7 +1,8 @@
 
-export const stateInitial = {	"format": 	"4-3",
-								"rule": 	"thirds",
-								"center": 	"c-c",
+export const stateInitial = {	"format": 		"4-3",
+								"rule": 		"thirds",
+								"center": 		"c-c",
+								"orientation": 	""
 };
 
 export const centers = [	{	key: "t-l",

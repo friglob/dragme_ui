@@ -4,9 +4,9 @@ import Header from 		'./../components/Header';
 import Footer from 		'./../components/Footer';
 import Drag from 		'./../components/Drag';
 
-import { formats, centers, stateInitial, localStorageKey } from './../components/Config';
+import { rules, centers, stateInitial, localStorageKey } from './../components/Config';
 import { formatByRatio } from './../components/Helpers';
-import _, { unset } from "lodash";
+import _ from "lodash";
 
 function Main(){
 
@@ -14,6 +14,7 @@ function Main(){
 	const [headerState, 	setHeaderState] 	= useState(true);
 	const [footerState, 	setFooterState] 	= useState(true);
 	const [imageData, 		setImageData] 		= useState(null);
+	const [randomRule, 		setRandomRule] 		= useState('');
 
 	// check local storage for image
 	useEffect(() => {
@@ -23,14 +24,21 @@ function Main(){
 			// get img format from ratio
 			let imgFormat = formatByRatio(imgData.ratio);
 			// set ratio
-			setSwipeState({state: {	format: imgFormat,
-									rule: 	stateInitial['rule'],
-									center: stateInitial['center'],
-									orientation: 	stateInitial['orientation'] }
+			setSwipeState({state: {	format: 		imgFormat,
+									orientation: 	imgData['orientation'],
+									rule: 			stateInitial['rule'],
+									center: 		stateInitial['center']
+									}
 						});
-			console.log( imgData );
 			setImageData( imgData );
+
+			setRandomRule("");
+		}else{
+			let randomRuleSelect = rules[Math.floor(Math.random() * rules.length)];
+			setRandomRule(randomRuleSelect.svg);
 		}
+		
+
 	}, []);
 
 	// on drag event
@@ -99,13 +107,14 @@ function Main(){
 
 			{ imageData === null && 
 				<div className="hello">
-					<h1>Practice composition.</h1>
+					<h1>Practice <label>Composition</label></h1>
 					<p>Use the <label>+</label> button to load an image from the gallery or by taking a photo.</p>
 					<p>Swiping <label>up/down</label> changes the crop of the picture.</p>
 					<p>Swiping <label>left/right</label> changes the grid rule applied to the image.</p>
 					<p>Clicking on the <label>centering icon</label> changes the center of the image focus.</p>
 					<p>Images are <label>not uploaded</label> to any server, they are stored on your device.</p>
 					<p>As usual, do not forget to <label>have fun</label> while using this tool.</p>
+					{ randomRule && <img className="hello__img" src={`dragme_ui/rules/${randomRule}`} alt="" />}
 				</div> 
 			}
 			

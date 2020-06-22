@@ -20,7 +20,7 @@ function Rule(props){
 		<div className="rule">
 
 			{ rule.svg && 
-				<img className="" alt={rule.title} src={`dragme_ui/rules/${rule.svg}`} /> 
+				<img className="" data-format={props.format} alt={rule.title} src={`dragme_ui/rules/${rule.svg}`} /> 
 			}
 			
 		</div>

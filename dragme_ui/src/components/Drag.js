@@ -84,7 +84,7 @@ const Drag = (props) => {
 			
 			<div className="drag-container" data-orientation={props.imageData.orientation} ref={refDrag}>
 				<Swipe
-					nodeName="div"
+					nodeName="figure"
 					className={`drag drag--rule-${swipeState.rule} drag--format-${swipeState.format} drag--center-${swipeState.center}`}
 					style={{backgroundImage: `url(${props.imageData.base64})`}}
 					onSwipe={ (e)=>{ onSwipe(e) } }
@@ -93,8 +93,9 @@ const Drag = (props) => {
 					detectTouch={true} 
 					preventDefault={true}
 					stopPropagation={true}>	
-					
-					<Rule rule={swipeState.rule} orientation={props.imageData.orientation} />
+					<Rule 	rule={swipeState.rule} 
+							format={swipeState.format}
+							orientation={props.imageData.orientation} />
 
 				</Swipe>
 				
