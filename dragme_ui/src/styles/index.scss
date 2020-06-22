@@ -301,10 +301,10 @@ footer{
 	&__img{
 		position: absolute;
 		z-index: 0;
-		top: 50px;
+		top: 100px;
 		left: 0;
 		width: 100vw;
-		height: 75vh;
+		//height: 75vh;
 		opacity: .5;
 	}
 
@@ -341,6 +341,10 @@ footer{
 	position: relative;
 	overflow: hidden;
 	display: inline-block;
+
+	&[data-loading="true"]{
+		animation: 1s spin infinite;
+	}
   }
   
   .upload-btn-wrapper input[type=file] {
@@ -350,3 +354,16 @@ footer{
 	top: 0;
 	opacity: 0;
   }
+
+
+
+
+
+  @keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}

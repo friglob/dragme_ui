@@ -101,7 +101,7 @@ function Main(){
 				<div className="hello">
 					<h1>Applied <label>Composition</label></h1>
 					<p>
-						Use the top <label>+</label> button to load an image from the gallery or by taking a photo.
+						Use the top <label>+</label> button to load an image or to take a picture.
 						Swiping <label>up/down</label> changes the crop of the picture.
 						Swiping <label>left/right</label> changes the grid rule applied to the image.
 						Clicking on the <label>centering icon</label> changes the center of the image focus.

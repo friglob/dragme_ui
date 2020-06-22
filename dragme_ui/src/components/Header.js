@@ -128,13 +128,10 @@ function Header(props){
 			<div className="right">
 
 				<strong>
-				{ loading && 
-					<span>loading...</span> }
-
 				{ !props.imageData && 
-					<div className="upload-btn-wrapper">
+					<div className={`upload-btn-wrapper`} data-loading={loading}>
 						<button className="btn btn--accent">+</button>
-						<input type="file" name="file"  onChange={(e) => doUpload(e)} />
+						<input type="file" name="file" accept="image/*" onChange={(e) => doUpload(e)} />
 					</div>
 				}
 
