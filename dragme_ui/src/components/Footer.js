@@ -7,7 +7,7 @@ function Footer(){
 		<footer className="footer clearfix">
 			
 			<div className="left">
-				Practice composition @ 2020.
+				Composition @ 2020.
 			</div> 
 			<div className="right">
 				Made with love.

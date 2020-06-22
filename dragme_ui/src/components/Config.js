@@ -63,18 +63,23 @@ export const formats = 	[	{	key: 	"9-16",
 ];
 
 export const rules = 	[	{	key: "thirds", 
+								svg: "thirds.svg", 
 								title: "Rule of thirds"
 							}, 
 							{	key: "fourths", 
+								svg: "fourths.svg",
 								title: 	"Rule of fourths" 
 							}, 
 							{	key: "sixths", 
+								svg: "sixths.svg",
 								title: 	"Rule of sixths" 
 							}, 
 							{	key: "fibonaci", 
+								svg: "fibonaci.svg",
 								title: "Fibonaci spiral"
 							},  
-							{	key: "golden", 
+							{	key: "golden",
+								svg: "golden.svg", 
 								title: 	"Golden ratio"
 							}
 ];

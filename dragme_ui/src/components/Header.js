@@ -47,7 +47,7 @@ function Header(props){
 		props.setImage(null)
 	}
 
-	// save file localy
+	// save file
 	const doSave = () => {
 		html2canvas(
 			document.querySelector(".drag"),{
@@ -64,6 +64,7 @@ function Header(props){
 		});
 	}
 
+	// recenter
 	const doCentering = () => {
 		props.setCenter();
 	}
@@ -91,6 +92,7 @@ function Header(props){
 
 			<div className="right">
 
+				<strong>
 				{ loading && 
 					<span>loading...</span> }
 
@@ -103,10 +105,12 @@ function Header(props){
 
 				{ props.imageData && 
 					<React.Fragment>
-						<button className="btn" onClick={(e) => doSave()}>^</button>
-						<button className="btn" onClick={(e) => doReset()}>x</button> 
+						<button className="btn" onClick={(e) => doSave()}>Download</button>
+						&nbsp;
+						<button className="btn" onClick={(e) => doReset()}>New</button> 
 					</React.Fragment>
 				}
+				</strong>
 			</div>
 
 		</header>

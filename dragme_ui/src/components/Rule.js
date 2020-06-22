@@ -2,6 +2,8 @@ import React,{useState, useEffect} from "react";
 import _ from 'lodash';
 import { rules } from './../components/Config';
 
+//import './../rules/thirds.svg';
+
 function Rule(props){
 
 	const [rule, 	setRule] 	= useState('');
@@ -9,7 +11,7 @@ function Rule(props){
 	// get rule from state/config
 	useEffect(() => {
 		if( props.rule ){
-			setRule(rules[ _.findKey(rules, {key: props.rule } )]['title'] );
+			setRule(rules[ _.findKey(rules, {key: props.rule } )] );
 		}
 	}, [props]);
 
@@ -17,8 +19,10 @@ function Rule(props){
 
 		<div className="rule">
 
-			Attach SVG <label>{rule}</label>
-
+			{ rule.svg && 
+				<img className="" alt={rule.title} src={`dragme_ui/rules/${rule.svg}`} /> 
+			}
+			
 		</div>
 
 	);
