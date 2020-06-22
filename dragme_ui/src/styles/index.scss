@@ -162,14 +162,7 @@ footer{
 	&--center-b-r{ background-position: right bottom; }
 
 	// formats
-	&--format-9-16{
-		width: calc( 100% * .56);
-		height: 100%;
-		@media (orientation: landscape) {
-			width: calc( 100% * 0.56);
-			height: 100%;
-		}
-	}
+	
 	&--format-2-3{
 		width: calc( 100% * 0.66);
 		height: 100%;
@@ -178,19 +171,19 @@ footer{
 			height: 100%;
 		}
 	}
+	&--format-3-2{
+		width: 100%;
+		height: calc( 100% * .66);
+		@media (orientation: landscape) {
+			width: 100%;
+			height: calc( 100% * .66);
+		}
+	}
 	&--format-3-4{
 		width: calc( 100% * 0.75);
 		height: 100%;
 		@media (orientation: landscape) {
 			width: calc( 100% * 0.75);
-			height: 100%;
-		}
-	}
-	&--format-4-5{
-		width: calc( 100% * 0.8);
-		height: 100%;
-		@media (orientation: landscape) {
-			width: calc( 100% * 0.8);
 			height: 100%;
 		}
 	}
@@ -202,20 +195,12 @@ footer{
 			height: calc( 100% * .75);
 		}
 	}
-	&--format-3-2{
-		width: 100%;
-		height: calc( 100% * .66);
+	&--format-4-5{
+		width: calc( 100% * 0.8);
+		height: 100%;
 		@media (orientation: landscape) {
-			width: 100%;
-			height: calc( 100% * .66);
-		}
-	}
-	&--format-16-9{
-		width: 100%;
-		height: calc( 100% * .56);
-		@media (orientation: landscape) {
-			width: 100%;
-			height: calc( 100% * .56);
+			width: calc( 100% * 0.8);
+			height: 100%;
 		}
 	}
 	&--format-5-4{
@@ -226,6 +211,23 @@ footer{
 			height: calc( 100% * .8);
 		}
 	}
+	&--format-16-9{
+		width: 100%;
+		height: calc( 100% / 1.77);
+		@media (orientation: landscape) {
+			width: 100%;
+			height: calc( 100% / 1.77);
+		}
+	}
+	&--format-9-16{
+		width: calc( 100% / 1.77);
+		height: 100%;
+		@media (orientation: landscape) {
+			width: calc( 100% / 1.77);
+			height: 100%;
+		}
+	}
+	
 	&--format-1-1{
 		width: 100%;
 		height: 100%;

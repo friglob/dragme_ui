@@ -11,7 +11,7 @@ function Rule(props){
 	useEffect(() => {
 		if( props.rule && props.format ){
 			//let ruleObj = rules[ _.findKey(rules, {key: props.rule } )];
-			let rulePath = `${baseUrl}rules/${props.rule}_${props.format}.svg`;
+			let rulePath = `${baseUrl}rules/${props.format}_${props.rule}.svg`;
 			setRule( rulePath );
 		}
 	}, [props]);
@@ -22,7 +22,7 @@ function Rule(props){
 
 			{ rule && 
 				<SVG 	className="rule__svg" 
-						loader={<span className="rule__loading">Loading Rule...</span>}
+						loader={<span className="rule__loading"></span>}
 						src={rule} />
 			}
 			
