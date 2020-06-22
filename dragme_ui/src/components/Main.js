@@ -14,7 +14,6 @@ function Main(){
 	const [headerState, 	setHeaderState] 	= useState(true);
 	const [footerState, 	setFooterState] 	= useState(true);
 	const [imageData, 		setImageData] 		= useState(null);
-	const [randomRule, 		setRandomRule] 		= useState('');
 
 	// check local storage for image
 	useEffect(() => {
@@ -31,13 +30,7 @@ function Main(){
 									}
 						});
 			setImageData( imgData );
-
-			setRandomRule("");
-		}else{
-			let randomRuleSelect = rules[Math.floor(Math.random() * rules.length)];
-			setRandomRule(randomRuleSelect.svg);
 		}
-		
 
 	}, []);
 
@@ -117,7 +110,7 @@ function Main(){
 						<br /><br />
 						<small className="gray">* Images are not uploaded to a server, they are stored on your device.</small>
 					</p>
-					{ randomRule && <img className="hello__img" src={`dragme_ui/rules/${randomRule}`} alt="" />}
+					<img className="hello__img" src={`dragme_ui/rules/homepage.svg`} alt="" />
 				</div> 
 			}
 			
