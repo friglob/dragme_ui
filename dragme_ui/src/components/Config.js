@@ -64,19 +64,19 @@ export const formats = 	[	{	key: 	"9-16",
 ];
 
 export const rules = 	[	{	key: "thirds", 
-								title: "Rule of thirds"
+								title: "Thirds"
 							}, 
 							{	key: "fourths", 
-								title: 	"Rule of fourths" 
+								title: 	"Fourths" 
 							}, 
 							{	key: "sixths", 
-								title: 	"Rule of sixths" 
+								title: 	"Sixths" 
 							}, 
 							{	key: "fibonaci", 
-								title: "Fibonaci spiral"
+								title: "Fibonaci"
 							},  
 							{	key: "golden",
-								title: 	"Golden ratio"
+								title: 	"Golden Ratio"
 							}
 ];
 
