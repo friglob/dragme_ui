@@ -13,18 +13,18 @@ export const centers = [	{	key: "t-l",
 								title: "t c"},
 							{	key: "t-r",
 								title: "t r"},
-							{	key: "c-r",
-								title: "c r" },
-							{	key: "b-r",
-								title: "b r"},
-							{	key: "b-c",
-								title: "b c"},
-							{	key: "b-l",
-								title: "b l"},
 							{	key: "c-l",
 								title: "c l"},
 							{	key: "c-c",
 								title: "c c"},
+							{	key: "c-r",
+								title: "c r" },
+							{	key: "b-l",
+								title: "b l"},
+							{	key: "b-c",
+								title: "b c"},
+							{	key: "b-r",
+								title: "b r"}
 ];
 
 export const formats = 	[	{	key: 	"9-16", 
@@ -88,11 +88,11 @@ export const rules = 	[	{	key: "r-thirds",
 							{	key: "g-triangles",
 								title: 	"Golden Triangles"
 							},
-							{	key: "g-spiral",
-								title: 	"Golden Spiral"
-							},
 							{	key: "g-harmonius",
 								title: 	"Harmonius Triangles"
+							},
+							{	key: "g-spiral",
+								title: 	"Golden Spiral"
 							}
 ];
 

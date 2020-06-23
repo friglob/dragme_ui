@@ -7,6 +7,7 @@ import Drag from 		'./../components/Drag';
 import { baseUrl, rules, centers, stateInitial, localStorageKey } from './../components/Config';
 import { formatByRatio } from './../components/Helpers';
 import _ from "lodash";
+import SVG from 'react-inlinesvg';
 
 function Main(){
 
@@ -99,22 +100,25 @@ function Main(){
 
 			{ imageData === null && 
 				<div className="hello">
-					<h1>Applied <label>Composition</label></h1>
-					<p>
-						Use the top <label>+</label> button to load an image or to take a picture.
-						Swipe <label>up/down</label> to change the crop of the picture.
-						Swipe <label>left/right</label> to change the composition rule applied to the image.
-						Click on the <label>center icon</label> to change the image centering.
+					<SVG 	className="hello__svg" 
+							loader={<span className="hello__loading"></span>}
+							src={`${baseUrl}svg/homepage.svg`} />
+					<h1 className="hello__title">
+						Compositions<br />
+						<label>& Formats</label>
+					</h1>
+					<h2 className="hello__subtitle">Use the top <label>+</label> button to load or take an image.</h2>
+					<p className="hello__description">
+						Swipe <label>up / down</label> to change the crop format of the loaded image.
+						&nbsp; • &nbsp; Swipe <label>left / right</label> to change the composition rule applied to the image.
+						&nbsp; • &nbsp; Tap/click on the <label>grid dots</label> to point to the important part of image.
 						<br /><br />
-						As usual, do not forget to <label>have fun</label> while using this tool.
-						<br /><br />
-						<small className="gray">* Images are not uploaded to a server, they are stored on your device.</small>
+						<small className="gray">* Images are not stored on any server.</small>
 					</p>
-					<img className="hello__img" src={`${baseUrl}rules/homepage.svg`} alt="" />
 				</div> 
 			}
 			
-			{ footerState && <Footer /> }
+			{ footerState && <Footer setImage={setImage} imageData={imageData} /> }
 
 		</div>
 

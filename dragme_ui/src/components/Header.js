@@ -4,7 +4,7 @@ import axios from 'axios';
 import html2canvas from 'html2canvas';
 import { baseUrl, formats, rules, centers, orientations } from './../components/Config';
 import { saveAs } from './../components/Helpers';
-
+import SVG from 'react-inlinesvg';
 
 
 function Orientation(props){
@@ -110,10 +110,14 @@ function Header(props){
 				{ props.imageData &&
 					<React.Fragment>
 						<label>
+							<SVG 	className="header__svg-vertical" 
+									src={`${baseUrl}svg/vertical.svg`} />
 							{ format }
 						</label>
 						&nbsp;
 						<label>
+							<SVG 	className="header__svg-vertical" 
+									src={`${baseUrl}svg/horizontal.svg`} />
 							{rule}
 						</label>
 						{<label className="right">

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import {Swipe} from "react-swipe-component"
 import Rule from './../components/Rule';
+import ListFormats from './../components/ListFormats';
+import ListRules from './../components/ListRules';
 import { stateInitial,rules,formats } from './../components/Config';
 import _ from 'lodash';
 
@@ -82,6 +84,11 @@ const Drag = (props) => {
 
 		<React.Fragment>
 			
+			{/*
+			<ListFormats format={swipeState.format} deltaY={swipeDeltaY}/>
+			<ListRules rule={swipeState.rule} deltaX={swipeDeltaX}/>
+			*/}
+
 			<div className="drag-container" data-orientation={props.imageData.orientation} ref={refDrag}>
 				<Swipe
 					nodeName="figure"
