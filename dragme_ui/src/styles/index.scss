@@ -115,7 +115,8 @@ body{
 
 	&__cta{
 		float: left;
-		color: $color_ui;
+		color: $color_text;
+		cursor: pointer;
 	}
 
 	&__info{
@@ -134,7 +135,8 @@ body{
 	}
 
 	a{
-		color: $color_ui;
+		cursor: pointer;
+		color: $color_text;
 		text-decoration: none;
 	}
 }
@@ -155,7 +157,6 @@ body{
 		width: 200px;
 		height: auto;
 		path{
-			stroke-width: 3px !important;
 			stroke: $color_brand !important;
 		}
 	}

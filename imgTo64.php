@@ -28,6 +28,7 @@ $arr = getimagesize( $path );
 $arr['base64'] = $base64;
 $arr['ratio'] = $arr[0]/$arr[1];
 $arr['colors'] = ["color1", "color2", "color3"];
+$arr['filename'] = $_FILES['file']['name'];
 
 if( $arr[0] == $arr[1] ){
 	$arr['orientation'] = 'square';

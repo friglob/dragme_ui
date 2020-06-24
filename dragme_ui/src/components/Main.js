@@ -66,8 +66,11 @@ function Main(){
 						});
 			// save LS
 			localStorage.setItem(localStorageKey, JSON.stringify( imgData ) );
+			// set title
+			window.document.title = imgData.filename;
 		}else{
 			localStorage.removeItem(localStorageKey);
+			window.document.title = 'Compositions & Formats';
 		}
 		setImageData( imgData );
 	}
@@ -110,8 +113,8 @@ function Main(){
 					<h2 className="hello__subtitle">Use the top <label>+</label> button to load or take an image.</h2>
 					<p className="hello__description">
 						Swipe <label>up / down</label> to change the crop format of the loaded image.
-						&nbsp; • &nbsp; Swipe <label>left / right</label> to change the composition rule applied to the image.
-						&nbsp; • &nbsp; Tap/click on the <label>grid dots</label> to point to the important part of image.
+						&nbsp; Swipe <label>left / right</label> to change the composition rule applied to the image.
+						&nbsp; Tap/click on the <label>grid dots</label> to point to the important part of image.
 						<br /><br />
 						<small className="gray">* Images are not stored on any server.</small>
 					</p>

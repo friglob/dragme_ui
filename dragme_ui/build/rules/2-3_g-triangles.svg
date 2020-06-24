@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 400 600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g id="g-triangles" transform="matrix(1,0,0,1,-5.71131,0)">
+        <g transform="matrix(6.12323e-17,-1,0.666667,4.08216e-17,5.71131,600)">
+            <path d="M0,0L600,600" style="fill:none;stroke:black;stroke-width:1.18px;"/>
+        </g>
+        <g transform="matrix(0.461418,0,0,0.307612,5.71131,9.9476e-14)">
+            <path d="M0,0L600,600" style="fill:none;stroke:black;stroke-width:2.55px;"/>
+        </g>
+        <g transform="matrix(0.462395,0,0,0.308263,129.274,415.042)">
+            <path d="M0,0L600,600" style="fill:none;stroke:black;stroke-width:2.54px;"/>
+        </g>
+    </g>
+</svg>

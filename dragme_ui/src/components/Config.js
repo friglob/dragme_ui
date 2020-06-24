@@ -88,9 +88,11 @@ export const rules = 	[	{	key: "r-thirds",
 							{	key: "g-triangles",
 								title: 	"Golden Triangles"
 							},
+							/*
 							{	key: "g-harmonius",
 								title: 	"Harmonius Triangles"
 							},
+							*/
 							{	key: "g-spiral",
 								title: 	"Golden Spiral"
 							}
