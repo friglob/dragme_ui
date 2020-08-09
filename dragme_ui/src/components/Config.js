@@ -62,6 +62,22 @@ export const formats = 	[	{	key: 	"9-16",
 							{	key: 	"16-9",
 								title: 	"Landscape 16:9",
 								ratio:  {from: 1.76, to: 3}
+							},
+							{	key: 	"7-8",
+								title: 	"Twitter Half",
+								ratio:  {from: 7, to: 8}
+							},
+							{	key: 	"7-4",
+								title: 	"Twitter Quarter",
+								ratio:  {from: 7, to: 4}
+							},
+							{	key: 	"7-1",
+								title: 	"Facebook Cover",
+								ratio:  {from: 7, to: 4}
+							},
+							{	key: 	"7-2",
+								title: 	"LinkedIn",
+								ratio:  {from: 7, to: 4}
 							}
 ];
 

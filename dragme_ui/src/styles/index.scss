@@ -21,19 +21,6 @@ body{
 }
 
 
-.sidebar{
-	position: fixed;
-	z-index: 200;
-	display: block;
-	top: 0;
-	left: 0;
-	padding: 10px;
-	background: rgba($color_bg,.8);
-	color: $color_text;
-	text-align: left;
-}
-
-
 
 .header{
 	position: fixed;
@@ -348,6 +335,39 @@ body{
 
 		@media (orientation: landscape) {
 			width: 100%;
+			height: 100%;
+		}
+	}
+
+	&--format-7-8{
+		width: calc( 100% );
+		height: 100%;
+		@media (orientation: landscape) {
+			width: calc( 100%);
+			height: 100%;
+		}
+	}
+	&--format-7-4{
+		width: calc( 100% );
+		height: 100%;
+		@media (orientation: landscape) {
+			width: calc( 100%);
+			height: 100%;
+		}
+	}
+	&--format-7-1{
+		width: calc( 100% );
+		height: 100%;
+		@media (orientation: landscape) {
+			width: calc( 100%);
+			height: 100%;
+		}
+	}
+	&--format-7-2{
+		width: calc( 100% );
+		height: 100%;
+		@media (orientation: landscape) {
+			width: calc( 100%);
 			height: 100%;
 		}
 	}
