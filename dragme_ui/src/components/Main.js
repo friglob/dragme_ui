@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from "react";
 
+import Sidebar from 	'./../components/Sidebar';
 import Header from 		'./../components/Header';
 import Footer from 		'./../components/Footer';
 import Drag from 		'./../components/Drag';
@@ -13,6 +14,7 @@ function Main(){
 
 	const [swipeState, 		setSwipeState] 		= useState({state:stateInitial});
 	const [headerState, 	setHeaderState] 	= useState(true);
+	const [sidebarState, 	setSidebarState] 	= useState(false);
 	const [footerState, 	setFooterState] 	= useState(true);
 	const [imageData, 		setImageData] 		= useState(null);
 
@@ -84,13 +86,23 @@ function Main(){
 		setSwipeState({	state: state});
 	}
 
+	// toggle sidebar state
+	const setSidebar = () => {
+		setSidebarState( !sidebarState );
+	}
+
 	return (
 
 		<div className="main">
 			
+			<Sidebar 		state={sidebarState}
+							setSidebar={setSidebar}
+							setImage={setImage} /> 
+
 			{ headerState && 
 				<Header 	state={swipeState.state} 
 							imageData={imageData}
+							setSidebar={setSidebar}
 							setImage={setImage}
 							setCenter={setCenter} /> 
 			}

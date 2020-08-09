@@ -21,6 +21,19 @@ body{
 }
 
 
+.sidebar{
+	position: fixed;
+	z-index: 200;
+	display: block;
+	top: 0;
+	left: 0;
+	padding: 10px;
+	background: rgba($color_bg,.8);
+	color: $color_text;
+	text-align: left;
+}
+
+
 
 .header{
 	position: fixed;

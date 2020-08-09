@@ -101,6 +101,17 @@ function Header(props){
 		props.setCenter();
 	}
 
+	// show panel
+	const toggleSidebar = (e) => {
+		e.preventDefault();
+		setLoading(true);
+		props.setSidebar();
+		setTimeout(e => {
+			setLoading(false);
+		},480)
+		
+	}
+
 	return (
 
 		<header className="header clearfix">
@@ -133,9 +144,9 @@ function Header(props){
 
 				<strong>
 				{ 
-					<div className={`upload-btn-wrapper`} data-loading={loading}>
-						<button className="btn btn--accent btn--large">+</button>
-						<input type="file" name="file" accept="image/*" onChange={(e) => doUpload(e)} />
+					<div className={`upload-btn-wrapper`} data-loading={loading} >
+						<button className="btn btn--accent btn--large" onClick={(e) => toggleSidebar(e)}>+</button>
+						{/* <input type="file" name="file" accept="image/*" onChange={(e) => doUpload(e) } /> */}
 					</div>
 				}
 
@@ -145,7 +156,7 @@ function Header(props){
 						<button className="btn" onClick={(e) => doSave({rules: true})}>get rules</button>
 						<button className="btn btn--ui" onClick={(e) => doSave({rules: false})}>Download</button>
 						*/}
-						<button className="btn btn--accent btn--large" onClick={(e) => doUpload()}>+</button> 
+						<button className="btn btn--accent btn--large" onClick={(e) => toggleSidebar() /*doUpload()*/}>+</button> 
 					</React.Fragment>
 				}
 				</strong>

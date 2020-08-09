@@ -15,7 +15,7 @@ function Footer(props){
 			
 			<div className="footer__cta">
 				{ props.imageData && 
-					<span  onClick={(e) => doReset()}>Clear</span>
+					<span  onClick={(e) => doReset()}>Clear photo</span>
 				}
 			</div> 
 
